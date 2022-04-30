@@ -17,8 +17,6 @@ use std::path::PathBuf;
 use std::process;
 use std::process::Stdio;
 
-use log::info;
-
 #[derive(Debug, thiserror::Error)]
 enum Error {
     #[error("protoc command exited with non-zero code")]
@@ -204,7 +202,7 @@ impl Protoc {
     }
 
     fn spawn(&self, cmd: &mut process::Command) -> anyhow::Result<process::Child> {
-        info!("spawning command {:?}", cmd);
+        //info!("spawning command {:?}", cmd);
 
         cmd.spawn()
             .map_err(|e| Error::FailedToSpawnCommand(format!("{:?}", cmd), e).into())
